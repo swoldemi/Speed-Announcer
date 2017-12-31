@@ -1,4 +1,5 @@
 import time, subprocess, re
+from datetime import datetime
 from twython import Twython
 
 # Load credentials
@@ -12,7 +13,6 @@ APP_SECRET = f[1].split('\n')[0]
 OAUTH_TOKEN = f[2].split('\n')[0]
 OAUTH_TOKEN_SECRET = f[3].split('\n')[0]
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-
 
 # Conduct a speed test 
 speedtest_result = subprocess.getoutput('speedtest-cli')
@@ -28,8 +28,8 @@ Test server: Hosted by ScaleMatrix - ({})[{} km]
 Ping: {} ms
 Download Speed: {} Mbit/s
 Upload Speed: {} Mbit/s
-""".format(isp, server, num_values[2], num_values[3], num_values[4], num_values[5])
-
+Time: {}
+""".format(isp, server, num_values[2], num_values[3], num_values[4], num_values[5], datetime.now())
 
 # Send a Tweet
 twitter.update_status(status=tweet)
