@@ -1,11 +1,14 @@
-import time, subprocess, re
+import time, subprocess, re, sys
 from datetime import datetime
 from twython import Twython
 
 def main():
+	# Get file name
+	credentials = sys.argv[1]
+	
 	# Load credentials
-	filename=open('credentials.txt','r')
-	f=filename.readlines()
+	filename = open(credentials, 'rt')
+	f = filename.readlines()
 	filename.close()
 
 	# Authenticate with Twitter
