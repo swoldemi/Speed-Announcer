@@ -1,0 +1,3 @@
+twython
+cx_Freeze
+speedtest-cli
