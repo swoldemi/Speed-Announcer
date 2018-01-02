@@ -28,7 +28,7 @@ Note: `cx_Freeze` is only needed if you want to make your own Windows executable
 - *Mention current ISP in Tweet stating the current download/upload speeds are not up to par with whatever the current internet plan being paid for details*
 	- (i.e. If you're paying $70 a month for 50 MBps down, but only got 10 MBps down in the speedtest, complain to customer service through the Tweet)
 	- There's speculation that ISPs are in cahoots with "speed testing services", slashing your current bandwidth-delay product by a factor when a speedtest.net request is made. 
-- Increase posting duration. Currently only posting once every hour.
+- Increase posting duration. Currently only posting once every 12 hours.
 - Make the program a little more object-oriented.
 - Add support for other social media outlets.
 	
