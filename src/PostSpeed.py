@@ -1,8 +1,12 @@
-import time, subprocess, re, sys
+import time, subprocess, re, sys, os
 from datetime import datetime
 from twython import Twython
+from progress.bar import Bar
+
 
 def main():
+	time_delay = 600 # Tweet every 8 hours (28800 seconds)
+	
 	# Get file name
 	credentials = sys.argv[1]
 	
@@ -19,10 +23,14 @@ def main():
 	
 	# Begin "event loop"
 	while True:
+		bar = Bar('Seconds until next Tweet', max=time_delay)
 		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+		
 		# Conduct a speed test 
+		print("Conducting speed test...")
 		speedtest_result = subprocess.getoutput('speedtest-cli')
-
+		print("Parsing speed test...")
+		
 		# Parse the result
 		pattern = re.compile("\d+[.]\d+")
 		num_values = pattern.findall(speedtest_result)
@@ -39,7 +47,10 @@ def main():
 
 		# Send a Tweet
 		twitter.update_status(status=tweet)
-		time.sleep(28800) # Tweet every 8 hours (28800 seconds)
-
+		print("Tweet Sent!")
+		for x in range (0, time_delay):
+			time.sleep(1)
+			bar.next()
+		bar.finish()
 if __name__ == "__main__":
 	main()
