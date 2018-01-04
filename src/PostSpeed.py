@@ -39,7 +39,7 @@ def main():
 
 		# Send a Tweet
 		twitter.update_status(status=tweet)
-		time.sleep(43200) # Tweet every 12 hours (43200 seconds)
+		time.sleep(28800) # Tweet every 8 hours (28800 seconds)
 
 if __name__ == "__main__":
 	main()
