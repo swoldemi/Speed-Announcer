@@ -11,7 +11,7 @@ if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(  name = "Speed Announcer",
-        version = "0.1",
+        version = "0.11",
         description = "A program to post my internet speed to Twitter",
         options = {"build_exe": build_exe_options},
         executables = [Executable("src/PostSpeed.py", base=base)])
