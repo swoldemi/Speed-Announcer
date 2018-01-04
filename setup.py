@@ -5,7 +5,7 @@ from cx_Freeze import setup, Executable
 build_exe_options = {"packages": ["os", "sys", "queue", "idna"], "excludes": ["tkinter"]}
 
 setup(  name = "Speed Announcer",
-        version = "0.11",
+        version = "0.12",
         description = "A program to post my internet speed to Twitter",
         options = {"build_exe": build_exe_options},
         executables = [Executable("src/PostSpeed.py")])
