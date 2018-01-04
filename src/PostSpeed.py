@@ -54,7 +54,7 @@ def main():
 		""".format(isp, server, num_values[2], num_values[3], num_values[4], num_values[5], datetime.now())
 
 		# Send a Tweet
-		#twitter.update_status(status=tweet)
+		twitter.update_status(status=tweet)
 		print("Tweet Sent!")
 		
 		i = 0
