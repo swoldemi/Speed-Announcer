@@ -13,7 +13,7 @@ def progress(count, total):
 	sys.stdout.flush()
 
 def main():
-	time_delay = 30 # Tweet every 8 hours (28800 seconds)
+	time_delay = 28800 # Tweet every 8 hours (28800 seconds)
 	last_tweet = "Never"
 	instance = 0
 	
