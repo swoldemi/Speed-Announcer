@@ -1,2 +1,2 @@
 @echo on
-START ./bin/PostSpeed.exe ./credentials.txt
+START "Speed Announcer" /MAX ./bin/PostSpeed.exe ./credentials.txt
