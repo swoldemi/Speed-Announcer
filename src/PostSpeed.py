@@ -5,7 +5,7 @@ from progress.bar import Bar
 
 
 def main():
-	time_delay = 600 # Tweet every 8 hours (28800 seconds)
+	time_delay = 28800 # Tweet every 8 hours (28800 seconds)
 	
 	# Get file name
 	credentials = sys.argv[1]
