@@ -1,8 +1,16 @@
 import time, subprocess, re, sys, os
 from datetime import datetime
 from twython import Twython
-from progress.bar import Bar
 
+def progress(count, total, status=''):
+	bar_len = total // 3600
+	filled_len = int(round(bar_len * count / float(total)))
+
+	percents = round(100.0 * count / float(total), 1)
+	bar = '=' * filled_len + '-' * (bar_len - filled_len)
+
+	sys.stdout.write('\r[%s] %s%s | %s\r' % (bar, percents, '%', status))
+	sys.stdout.flush()
 
 def main():
 	time_delay = 28800 # Tweet every 8 hours (28800 seconds)
@@ -23,9 +31,7 @@ def main():
 	
 	# Begin "event loop"
 	while True:
-	
 		os.system("cls") # should add support for multiple operating systems
-		bar = Bar('Seconds until next Tweet', max=time_delay)
 		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 		
 		# Conduct a speed test 
@@ -48,11 +54,13 @@ def main():
 		""".format(isp, server, num_values[2], num_values[3], num_values[4], num_values[5], datetime.now())
 
 		# Send a Tweet
-		twitter.update_status(status=tweet)
+		#twitter.update_status(status=tweet)
 		print("Tweet Sent!")
-		for x in range (0, time_delay):
+		
+		i = 0
+		while i < time_delay:
+			progress(i, time_delay, status="Waiting {} seconds until next speed test".format(time_delay))
 			time.sleep(1)
-			bar.next()
-		bar.finish()
+			i +=1
 if __name__ == "__main__":
 	main()
