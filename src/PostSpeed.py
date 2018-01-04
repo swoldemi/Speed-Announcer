@@ -14,6 +14,8 @@ def progress(count, total, status=''):
 
 def main():
 	time_delay = 28800 # Tweet every 8 hours (28800 seconds)
+	last_tweet = "Never"
+	instance = 0
 	
 	# Get file name
 	credentials = sys.argv[1]
@@ -28,12 +30,14 @@ def main():
 	APP_SECRET = f[1].split('\n')[0]
 	OAUTH_TOKEN = f[2].split('\n')[0]
 	OAUTH_TOKEN_SECRET = f[3].split('\n')[0]
-	
+
 	# Begin "event loop"
 	while True:
 		os.system("cls") # should add support for multiple operating systems
 		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-		
+		if instance > 1:
+			print("Last tweet was sent {}".format(last_tweet))
+			
 		# Conduct a speed test 
 		print("Conducting speed test...")
 		speedtest_result = subprocess.getoutput('speedtest-cli')
@@ -44,6 +48,7 @@ def main():
 		num_values = pattern.findall(speedtest_result)
 		server = speedtest_result.split("(")[2].split(")")[0]
 		isp = "XFINITY by Comcast"
+		time = datetime.now()
 		tweet = """
 		Speedtest.net Results for ISP {}:
 		Test server: Hosted by ScaleMatrix - ({})[{} km]
@@ -51,10 +56,12 @@ def main():
 		Download Speed: {} Mbit/s
 		Upload Speed: {} Mbit/s
 		Time: {}
-		""".format(isp, server, num_values[2], num_values[3], num_values[4], num_values[5], datetime.now())
-
+		""".format(isp, server, num_values[2], num_values[3], num_values[4], num_values[5], time)
+		
 		# Send a Tweet
 		twitter.update_status(status=tweet)
+		last_tweet = time
+		instance +=1
 		print("Tweet Sent!")
 		
 		i = 0
