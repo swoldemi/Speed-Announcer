@@ -23,6 +23,8 @@ def main():
 	
 	# Begin "event loop"
 	while True:
+	
+		os.system("cls") # should add support for multiple operating systems
 		bar = Bar('Seconds until next Tweet', max=time_delay)
 		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 		
