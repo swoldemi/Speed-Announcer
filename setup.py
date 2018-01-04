@@ -14,4 +14,4 @@ setup(  name = "Speed Announcer",
         version = "0.1",
         description = "A program to post my internet speed to Twitter",
         options = {"build_exe": build_exe_options},
-        executables = [Executable("PostSpeed.py", base=base)])
+        executables = [Executable("src/PostSpeed.py", base=base)])
