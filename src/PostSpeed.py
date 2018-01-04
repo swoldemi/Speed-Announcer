@@ -16,10 +16,10 @@ def main():
 	APP_SECRET = f[1].split('\n')[0]
 	OAUTH_TOKEN = f[2].split('\n')[0]
 	OAUTH_TOKEN_SECRET = f[3].split('\n')[0]
-	twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 	
 	# Begin "event loop"
 	while True:
+		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 		# Conduct a speed test 
 		speedtest_result = subprocess.getoutput('speedtest-cli')
 
